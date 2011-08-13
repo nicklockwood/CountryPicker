@@ -69,6 +69,6 @@ CountryPickerDelegate protocol
 
 The CountryPickerDelegate protocol has a single obligatory method:
 
-- (void)countryPicker:(CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code;
+	- (void)countryPicker:(CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code;
 
 This method is called whenever a country is selected in the picker.
