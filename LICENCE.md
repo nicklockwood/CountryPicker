@@ -1,5 +1,6 @@
 CountryPicker
-version 1.0, April 25th, 2011
+
+Version 1.0.1, February 11th, 2012
 
 Copyright (C) 2011 Charcoal Design
 

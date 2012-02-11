@@ -6,6 +6,22 @@ CountryPicker is a custom UIPickerView subclass that provides an iOS control all
 Note that the list of countries is based on the ISO 3166 country code standard (http://en.wikipedia.org/wiki/ISO_3166-1). This list excludes certain smaller countries, regarding them as part of a larger state. For example, England, Scotland, Wales and Northern Ireland are lumped together as Great Britain. For most purposes this is fine as it matches the convention used for locales, but if you need to specify additional countries, you can add them to the Countries.plist file (making sure to invent a unique country code for each).
 
 
+Supported iOS & SDK Versions
+-----------------------------
+
+* Supported build target - iOS 5.0 (Xcode 4.2, Apple LLVM compiler 3.0)
+* Earliest supported deployment target - iOS 4.3
+* Earliest compatible deployment target - iOS 3.2
+
+NOTE: 'Supported' means that the library has been tested with this version. 'Compatible' means that the library should work on this iOS version (i.e. it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
+
+
+ARC Compatibility
+------------------
+
+As of version 1.0.1, CountryPicker automatically works with both ARC and non-ARC projects through conditional compilation. There is no need to exclude CountryPicker files from the ARC validation process, or to convert CountryPicker using the ARC conversion tool.
+
+
 Installation
 --------------
 

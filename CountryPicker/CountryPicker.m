@@ -1,12 +1,13 @@
 //
 //  CountryPicker.m
 //
-//  Version 1.0
+//  Version 1.0.1
 //
 //  Created by Nick Lockwood on 25/04/2011.
-//  Copyright 2011 Charcoal Design. All rights reserved.
+//  Copyright 2011 Charcoal Design
 //
-//  Get the latest version of CountryPicker from either of these locations:
+//  Distributed under the permissive zlib License
+//  Get the latest version from either of these locations:
 //
 //  http://charcoaldesign.co.uk/source/cocoa#countrypicker
 //  https://github.com/nicklockwood/CountryPicker
@@ -65,7 +66,7 @@ static NSDictionary *countryCodesByName = nil;
     countryCodesByName = [codesByName copy];
     
     NSArray *names = [countryNamesByCode allValues];
-    countryNames = [[names sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] retain];
+    countryNames = AH_RETAIN([names sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]);
     
     NSMutableArray *codes = [NSMutableArray arrayWithCapacity:[names count]];
     for (NSString *name in countryNames)
@@ -176,13 +177,13 @@ static NSDictionary *countryCodesByName = nil;
 {
     if (!view)
     {
-        view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 30)] autorelease];
+        view = AH_AUTORELEASE([[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 30)]);
         
-        UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)] autorelease];
+        UILabel *label = AH_AUTORELEASE([[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)]);
         label.backgroundColor = [UIColor clearColor];
         [view addSubview:label];
         
-        UIImageView *flagView = [[[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)] autorelease];
+        UIImageView *flagView = AH_AUTORELEASE([[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)]);
         flagView.contentMode = UIViewContentModeScaleToFill;
         [view addSubview:flagView];
     }
