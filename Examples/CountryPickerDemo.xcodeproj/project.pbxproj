@@ -266,6 +266,7 @@
 		01D3A1CA14E610F6002FC9B1 /* ZA.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3A0D114E610F5002FC9B1 /* ZA.png */; };
 		01D3A1CB14E610F6002FC9B1 /* ZM.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3A0D214E610F5002FC9B1 /* ZM.png */; };
 		01D3A1CC14E610F6002FC9B1 /* ZW.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3A0D314E610F5002FC9B1 /* ZW.png */; };
+		AE14E5561523846C001811F8 /* CountryPickerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE14E5551523846C001811F8 /* CountryPickerTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -534,6 +535,8 @@
 		01D3A0D114E610F5002FC9B1 /* ZA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZA.png; sourceTree = "<group>"; };
 		01D3A0D214E610F5002FC9B1 /* ZM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZM.png; sourceTree = "<group>"; };
 		01D3A0D314E610F5002FC9B1 /* ZW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZW.png; sourceTree = "<group>"; };
+		AE14E5541523846C001811F8 /* CountryPickerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryPickerTableView.h; sourceTree = "<group>"; };
+		AE14E5551523846C001811F8 /* CountryPickerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryPickerTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -609,6 +612,8 @@
 				01D39FD414E60FE1002FC9B1 /* Countries.plist */,
 				01D39FD514E60FE1002FC9B1 /* CountryPicker.h */,
 				01D39FD614E60FE1002FC9B1 /* CountryPicker.m */,
+				AE14E5541523846C001811F8 /* CountryPickerTableView.h */,
+				AE14E5551523846C001811F8 /* CountryPickerTableView.m */,
 			);
 			name = CountryPicker;
 			path = ../CountryPicker;
@@ -1187,6 +1192,7 @@
 				01D39FC314E60FBC002FC9B1 /* AppDelegate.m in Sources */,
 				01D39FC614E60FBC002FC9B1 /* ViewController.m in Sources */,
 				01D39FD814E60FE1002FC9B1 /* CountryPicker.m in Sources */,
+				AE14E5561523846C001811F8 /* CountryPickerTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
