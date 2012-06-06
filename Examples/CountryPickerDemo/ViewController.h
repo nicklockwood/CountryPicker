@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CountryPicker.h"
+#import "CountryPickerTableView.h"
 
 @interface ViewController : UIViewController <CountryPickerDelegate>
 

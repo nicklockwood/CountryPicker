@@ -19,4 +19,10 @@
     codeLabel.text = code;
 }
 
+
+- (void)countryPickerTableView:(UITableView *)pickerTableView didSelectCountryWithName:(NSString *)name code:(NSString *)code{
+    
+    nameLabel.text = name;
+    codeLabel.text = code;
+}
 @end
