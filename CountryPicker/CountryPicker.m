@@ -46,54 +46,53 @@
 
 @implementation CountryPicker
 
-static NSArray *countryNames = nil;
-static NSArray *countryCodes = nil;
-static NSDictionary *countryNamesByCode = nil;
-static NSDictionary *countryCodesByName = nil;
-
 @synthesize delegate;
-
-+ (void)initialize
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Countries" ofType:@"plist"];
-    countryNamesByCode = [[NSDictionary alloc] initWithContentsOfFile:path];
-    
-    NSMutableDictionary *codesByName = [NSMutableDictionary dictionary];
-    for (NSString *code in [countryNamesByCode allKeys])
-    {
-        [codesByName setObject:code forKey:[countryNamesByCode objectForKey:code]];
-    }
-    countryCodesByName = [codesByName copy];
-    
-    NSArray *names = [countryNamesByCode allValues];
-    countryNames = AH_RETAIN([names sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]);
-    
-    NSMutableArray *codes = [NSMutableArray arrayWithCapacity:[names count]];
-    for (NSString *name in countryNames)
-    {
-        [codes addObject:[countryCodesByName objectForKey:name]];
-    }
-    countryCodes = [codes copy];
-}
 
 + (NSArray *)countryNames
 {
-    return countryNames;
+    static NSArray *_countryNames = nil;
+    if (!_countryNames)
+    {
+        _countryNames = [[[[self countryNamesByCode] allValues] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] copy];
+    }
+    return _countryNames;
 }
 
 + (NSArray *)countryCodes
 {
-    return countryCodes;
+    static NSArray *_countryCodes = nil;
+    if (!_countryCodes)
+    {
+        _countryCodes = [[[self countryCodesByName] objectsForKeys:[self countryNames] notFoundMarker:@""] copy];
+    }
+    return _countryCodes;
 }
 
 + (NSDictionary *)countryNamesByCode
 {
-    return countryNamesByCode;
+    static NSDictionary *_countryNamesByCode = nil;
+    if (!_countryNamesByCode)
+    {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Countries" ofType:@"plist"];
+        _countryNamesByCode = [[NSDictionary alloc] initWithContentsOfFile:path];
+    }
+    return _countryNamesByCode;
 }
 
 + (NSDictionary *)countryCodesByName
 {
-    return countryCodesByName;
+    static NSDictionary *_countryCodesByName = nil;
+    if (!_countryCodesByName)
+    {
+        NSDictionary *countryNamesByCode = [self countryNamesByCode];
+        NSMutableDictionary *codesByName = [NSMutableDictionary dictionary];
+        for (NSString *code in countryNamesByCode)
+        {
+            codesByName[countryNamesByCode[code]] = code;
+        }
+        _countryCodesByName = [codesByName copy];
+    }
+    return _countryCodesByName;
 }
 
 - (void)setup
@@ -132,7 +131,7 @@ static NSDictionary *countryCodesByName = nil;
 
 - (void)setSelectedCountryCode:(NSString *)countryCode
 {
-    NSInteger index = [countryCodes indexOfObject:countryCode];
+    NSInteger index = [[isa countryCodes] indexOfObject:countryCode];
     if (index != NSNotFound)
     {
         [self selectRow:index inComponent:0 animated:NO];
@@ -142,12 +141,12 @@ static NSDictionary *countryCodesByName = nil;
 - (NSString *)selectedCountryCode
 {
     NSInteger index = [self selectedRowInComponent:0];
-    return [countryCodes objectAtIndex:index];
+    return [isa countryCodes][index];
 }
 
 - (void)setSelectedCountryName:(NSString *)countryName
 {
-    NSInteger index = [countryNames indexOfObject:countryName];
+    NSInteger index = [[isa countryNames] indexOfObject:countryName];
     if (index != NSNotFound)
     {
         [self selectRow:index inComponent:0 animated:NO];
@@ -157,7 +156,7 @@ static NSDictionary *countryCodesByName = nil;
 - (NSString *)selectedCountryName
 {
     NSInteger index = [self selectedRowInComponent:0];
-    return [countryNames objectAtIndex:index];
+    return [isa countryNames][index];
 }
 
 #pragma mark -
@@ -170,27 +169,35 @@ static NSDictionary *countryCodesByName = nil;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [countryCodes count];
+    return [[isa countryCodes] count];
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     if (!view)
     {
-        view = AH_AUTORELEASE([[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 30)]);
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 30)];
         
-        UILabel *label = AH_AUTORELEASE([[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)]);
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
         label.backgroundColor = [UIColor clearColor];
         [view addSubview:label];
         
-        UIImageView *flagView = AH_AUTORELEASE([[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)]);
+        UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)];
         flagView.contentMode = UIViewContentModeScaleToFill;
         [view addSubview:flagView];
+        
+#if !__has_feature(objc_arc)
+        
+        [label release];
+        [flagView release];
+        [view autorelease];
+#endif
+        
     }
     
-    [(UILabel *)[view.subviews objectAtIndex:0] setText:[countryNames objectAtIndex:row]];
-    UIImage *flag = [UIImage imageNamed:[[countryCodes objectAtIndex:row] stringByAppendingPathExtension:@"png"]];
-    [(UIImageView *)[view.subviews objectAtIndex:1] setImage:flag];
+    [(UILabel *)(view.subviews)[0] setText:[isa countryNames][row]];
+    UIImage *flag = [UIImage imageNamed:[[isa countryCodes][row] stringByAppendingPathExtension:@"png"]];
+    [(UIImageView *)(view.subviews)[1] setImage:flag];
     
     return view;
 }

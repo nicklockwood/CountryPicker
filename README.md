@@ -9,9 +9,9 @@ Note that the list of countries is based on the ISO 3166 country code standard (
 Supported iOS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 5.0 (Xcode 4.2, Apple LLVM compiler 3.0)
-* Earliest supported deployment target - iOS 4.3
-* Earliest compatible deployment target - iOS 3.2
+* Supported build target - iOS 6.1 (Xcode 4.2, Apple LLVM compiler 4.2)
+* Earliest supported deployment target - iOS 5.0
+* Earliest compatible deployment target - iOS 4.3
 
 NOTE: 'Supported' means that the library has been tested with this version. 'Compatible' means that the library should work on this iOS version (i.e. it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
 
@@ -88,3 +88,13 @@ The CountryPickerDelegate protocol has a single obligatory method:
 	- (void)countryPicker:(CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code;
 
 This method is called whenever a country is selected in the picker.
+
+
+Subclassing
+------------------
+
+As of version 1.0.2 you can easily subclass CountryPicker to modify the country name/code list.
+
+To add additional countries, either modify the Countries.plist, or override the +countryNamesByCode method (there is no need to override +countryCodesByName as this is derived automatically from +countryNamesByCode).
+
+To change the display order, or disaply duplicate copies of (say) US or UK at the top of the list, override +countryNames method (there is no need to override  +countryCodes as this is derived automatically from +countryNames and +countryCodesByName).
