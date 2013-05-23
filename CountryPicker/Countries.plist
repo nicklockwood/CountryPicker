@@ -89,7 +89,7 @@
 	<key>CH</key>
 	<string>Switzerland</string>
 	<key>CI</key>
-	<string>Cote D'Ivoire (Ivory Coast)</string>
+	<string>Cote D&apos;Ivoire (Ivory Coast)</string>
 	<key>CK</key>
 	<string>Cook Islands</string>
 	<key>CL</key>
@@ -155,7 +155,7 @@
 	<key>GA</key>
 	<string>Gabon</string>
 	<key>GB</key>
-	<string>Great Britain (UK)</string>
+	<string>United Kingdom</string>
 	<key>GD</key>
 	<string>Grenada</string>
 	<key>GE</key>
@@ -229,7 +229,7 @@
 	<key>JO</key>
 	<string>Jordan</string>
 	<key>JP</key>
-	<string>japan</string>
+	<string>Japan</string>
 	<key>KE</key>
 	<string>Kenya</string>
 	<key>KG</key>
@@ -394,6 +394,8 @@
 	<string>Seychelles</string>
 	<key>SD</key>
 	<string>Sudan</string>
+	<key>SSD</key>
+	<string>South Sudan</string>
 	<key>SE</key>
 	<string>Sweden</string>
 	<key>SG</key>
@@ -460,8 +462,6 @@
 	<string>Ukraine</string>
 	<key>UG</key>
 	<string>Uganda</string>
-	<key>GB</key>
-	<string>United Kingdom</string>
 	<key>UM</key>
 	<string>United States Minor Outlying Islands</string>
 	<key>US</key>

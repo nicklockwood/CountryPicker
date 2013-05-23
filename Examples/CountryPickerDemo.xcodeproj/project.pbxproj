@@ -266,6 +266,7 @@
 		01D3A1CA14E610F6002FC9B1 /* ZA.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3A0D114E610F5002FC9B1 /* ZA.png */; };
 		01D3A1CB14E610F6002FC9B1 /* ZM.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3A0D214E610F5002FC9B1 /* ZM.png */; };
 		01D3A1CC14E610F6002FC9B1 /* ZW.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3A0D314E610F5002FC9B1 /* ZW.png */; };
+		4908A1E6174DF834001F5BFF /* SSD.png in Resources */ = {isa = PBXBuildFile; fileRef = 4908A1E5174DF834001F5BFF /* SSD.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -534,6 +535,7 @@
 		01D3A0D114E610F5002FC9B1 /* ZA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZA.png; sourceTree = "<group>"; };
 		01D3A0D214E610F5002FC9B1 /* ZM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZM.png; sourceTree = "<group>"; };
 		01D3A0D314E610F5002FC9B1 /* ZW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZW.png; sourceTree = "<group>"; };
+		4908A1E5174DF834001F5BFF /* SSD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSD.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -824,6 +826,7 @@
 				01D3A0A714E610F5002FC9B1 /* SN.png */,
 				01D3A0A814E610F5002FC9B1 /* SO.png */,
 				01D3A0A914E610F5002FC9B1 /* SR.png */,
+				4908A1E5174DF834001F5BFF /* SSD.png */,
 				01D3A0AA14E610F5002FC9B1 /* ST.png */,
 				01D3A0AB14E610F5002FC9B1 /* SV.png */,
 				01D3A0AC14E610F5002FC9B1 /* SY.png */,
@@ -1173,6 +1176,7 @@
 				01D3A1CA14E610F6002FC9B1 /* ZA.png in Resources */,
 				01D3A1CB14E610F6002FC9B1 /* ZM.png in Resources */,
 				01D3A1CC14E610F6002FC9B1 /* ZW.png in Resources */,
+				4908A1E6174DF834001F5BFF /* SSD.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
