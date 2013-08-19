@@ -195,7 +195,15 @@
         
     }
     
-    [(UILabel *)(view.subviews)[0] setText:[isa countryNames][row]];
+    NSString *identifier = [NSLocale localeIdentifierFromComponents:[NSDictionary dictionaryWithObject: [isa countryCodes][row] forKey:NSLocaleCountryCode]];
+    NSString *country = [[NSLocale currentLocale] displayNameForKey: NSLocaleIdentifier value: identifier];
+    
+    [(UILabel *)(view.subviews)[0] setText: country];
+    
+#if !__has_feature(objc_arc)
+    [country release];
+#endif
+    
     UIImage *flag = [UIImage imageNamed:[[isa countryCodes][row] stringByAppendingPathExtension:@"png"]];
     [(UIImageView *)(view.subviews)[1] setImage:flag];
     
