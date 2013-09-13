@@ -131,7 +131,7 @@
 
 - (void)setSelectedCountryCode:(NSString *)countryCode
 {
-    NSInteger index = [[isa countryCodes] indexOfObject:countryCode];
+    NSInteger index = [[[self class] countryCodes] indexOfObject:countryCode];
     if (index != NSNotFound)
     {
         [self selectRow:index inComponent:0 animated:NO];
@@ -141,12 +141,12 @@
 - (NSString *)selectedCountryCode
 {
     NSInteger index = [self selectedRowInComponent:0];
-    return [isa countryCodes][index];
+    return [[self class] countryCodes][index];
 }
 
 - (void)setSelectedCountryName:(NSString *)countryName
 {
-    NSInteger index = [[isa countryNames] indexOfObject:countryName];
+    NSInteger index = [[[self class] countryNames] indexOfObject:countryName];
     if (index != NSNotFound)
     {
         [self selectRow:index inComponent:0 animated:NO];
@@ -156,7 +156,7 @@
 - (NSString *)selectedCountryName
 {
     NSInteger index = [self selectedRowInComponent:0];
-    return [isa countryNames][index];
+    return [[self class] countryNames][index];
 }
 
 #pragma mark -
@@ -169,7 +169,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [[isa countryCodes] count];
+    return [[[self class] countryCodes] count];
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
@@ -195,8 +195,8 @@
         
     }
     
-    [(UILabel *)(view.subviews)[0] setText:[isa countryNames][row]];
-    UIImage *flag = [UIImage imageNamed:[[isa countryCodes][row] stringByAppendingPathExtension:@"png"]];
+    [(UILabel *)(view.subviews)[0] setText:[[self class] countryNames][row]];
+    UIImage *flag = [UIImage imageNamed:[[[self class] countryCodes][row] stringByAppendingPathExtension:@"png"]];
     [(UIImageView *)(view.subviews)[1] setImage:flag];
     
     return view;
