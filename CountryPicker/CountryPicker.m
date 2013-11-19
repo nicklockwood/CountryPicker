@@ -1,7 +1,7 @@
 //
 //  CountryPicker.m
 //
-//  Version 1.1
+//  Version 1.2
 //
 //  Created by Nick Lockwood on 25/04/2011.
 //  Copyright 2011 Charcoal Design
@@ -79,8 +79,14 @@
     static NSDictionary *_countryNamesByCode = nil;
     if (!_countryNamesByCode)
     {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"Countries" ofType:@"plist"];
-        _countryNamesByCode = [[NSDictionary alloc] initWithContentsOfFile:path];
+        NSMutableDictionary *namesByCode = [NSMutableDictionary dictionary];
+        for (NSString *code in [NSLocale ISOCountryCodes])
+        {
+            NSString *identifier = [NSLocale localeIdentifierFromComponents:@{NSLocaleCountryCode: code}];
+            NSString *countryName = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:identifier];
+            if (countryName) namesByCode[code] = countryName;
+        }
+        _countryNamesByCode = [namesByCode copy];
     }
     return _countryNamesByCode;
 }
@@ -125,23 +131,23 @@
     return self;
 }
 
-- (void)setWithLocale:(NSLocale *)locale
-{
-    self.selectedCountryCode = [locale objectForKey:NSLocaleCountryCode];
-}
-
 - (void)setDataSource:(__unused id<UIPickerViewDataSource>)dataSource
 {
     //does nothing
 }
 
-- (void)setSelectedCountryCode:(NSString *)countryCode
+- (void)setSelectedCountryCode:(NSString *)countryCode animated:(BOOL)animated
 {
     NSInteger index = [[[self class] countryCodes] indexOfObject:countryCode];
     if (index != NSNotFound)
     {
-        [self selectRow:index inComponent:0 animated:NO];
+        [self selectRow:index inComponent:0 animated:animated];
     }
+}
+
+- (void)setSelectedCountryCode:(NSString *)countryCode
+{
+    [self setSelectedCountryCode:countryCode animated:NO];
 }
 
 - (NSString *)selectedCountryCode
@@ -150,19 +156,45 @@
     return [[self class] countryCodes][index];
 }
 
-- (void)setSelectedCountryName:(NSString *)countryName
+- (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated
 {
     NSInteger index = [[[self class] countryNames] indexOfObject:countryName];
     if (index != NSNotFound)
     {
-        [self selectRow:index inComponent:0 animated:NO];
+        [self selectRow:index inComponent:0 animated:animated];
     }
+}
+
+- (void)setSelectedCountryName:(NSString *)countryName
+{
+    [self setSelectedCountryName:countryName animated:NO];
 }
 
 - (NSString *)selectedCountryName
 {
     NSInteger index = [self selectedRowInComponent:0];
     return [[self class] countryNames][index];
+}
+
+- (void)setSelectedLocale:(NSLocale *)locale animated:(BOOL)animated
+{
+    [self setSelectedCountryCode:[locale objectForKey:NSLocaleCountryCode] animated:animated];
+}
+
+- (void)setSelectedLocale:(NSLocale *)locale
+{
+    [self setSelectedLocale:locale animated:NO];
+}
+
+- (NSLocale *)selectedLocale
+{
+    NSString *countryCode = self.selectedCountryCode;
+    if (countryCode)
+    {
+        NSString *identifier = [NSLocale localeIdentifierFromComponents:@{NSLocaleCountryCode: countryCode}];
+        return [NSLocale localeWithLocaleIdentifier:identifier];
+    }
+    return nil;
 }
 
 #pragma mark -
@@ -187,16 +219,17 @@
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
         label.backgroundColor = [UIColor clearColor];
+        label.tag = 1;
         [view addSubview:label];
         
         UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)];
         flagView.contentMode = UIViewContentModeScaleAspectFit;
+        flagView.tag = 2;
         [view addSubview:flagView];
     }
-    
-    [(UILabel *)(view.subviews)[0] setText:[[self class] countryNames][row]];
-    UIImage *flag = [UIImage imageNamed:[[[self class] countryCodes][row] stringByAppendingPathExtension:@"png"]];
-    [(UIImageView *)view.subviews[1] setImage:flag];
+
+    ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][row];
+    ((UIImageView *)[view viewWithTag:2]).image = [UIImage imageNamed:[[self class] countryCodes][row]];
     
     return view;
 }

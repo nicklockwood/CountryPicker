@@ -1,3 +1,10 @@
+Version 1.2
+
+- Removed Countries.plist - country list is now generated automatically
+- Country names are now localized
+- Added ability to set and get country using locale
+- Removed the setWithLocale: method
+
 Version 1.1
 
 - Updated for iOS 7 compatibility

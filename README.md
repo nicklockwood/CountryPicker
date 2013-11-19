@@ -27,7 +27,7 @@ If you wish to convert your whole project to ARC, comment out the #error line in
 Installation
 --------------
 
-To use the CountryPicker in an app, just drag the CountryPicker class files, and the Countries.plist file into your project. If you want to use the FAMFAMFAM flag icons, drag the Flags folder in also.
+To use the CountryPicker in an app, just drag the CountryPicker class files, and the Countries.plist file into your project. If you want to use the flag icons, drag the Flags folder in also.
 
 
 CountryPicker class methods
@@ -69,17 +69,21 @@ The currently selected country name. This is a read-write property, so it can be
 	
 The currently selected country code. This is a read-write property, so it can be used to set the picker value. Setting the picker to a country code that does not appear in the `countryCodes` array has no effect.
 	
+    @property (nonatomic, copy) NSLocale *selectedLocale;
+	
+This is a convenience property to set/get the selected country using a locale. The picker will automatically select the correct country based on the local. To default the picker to the current device locale, you can say:
+
+	picker.selectedLocale = [NSLocale currentLocale];
+
 
 CountryPicker instance methods
--------------------------------
+----------------------------------
 
-CountryPicker has the following utility method:
-
-	- (void)setWithLocale:(NSLocale *)locale;
-
-This is a convenience method to set the picker using a locale. The picker will automatically select the correct country based on the local. To default the picker to the current device locale, you can say:
-
-	[picker setWithLocale:[NSLocale currentLocale]];
+    - (void)setSelectedCountryCode:(NSString *)countryCode animated:(BOOL)animated;
+    - (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated;
+    - (void)setSelectedLocale:(NSLocale *)locale animated:(BOOL)animated;
+    
+These methods allow you to set the current country via name, code or locale. THey work excatly like the equivalent property setters, but have an optional animated parameter to make the picker scroll smoothly to the selected country.
 
 
 CountryPickerDelegate protocol
@@ -97,6 +101,6 @@ Subclassing
 
 As of version 1.0.2 you can easily subclass CountryPicker to modify the country name/code list.
 
-To add additional countries, either modify the Countries.plist, or override the +countryNamesByCode method (there is no need to override +countryCodesByName as this is derived automatically from +countryNamesByCode).
+To add additional countries, override the +countryNamesByCode method (there is no need to override +countryCodesByName as this is derived automatically from +countryNamesByCode).
 
-To change the display order, or disaply duplicate copies of (say) US or UK at the top of the list, override +countryNames method (there is no need to override  +countryCodes as this is derived automatically from +countryNames and +countryCodesByName).
+To change the display order, or display duplicate copies of (say) US or UK at the top of the list, override +countryNames method (there is no need to override +countryCodes as this is derived automatically from +countryNames and +countryCodesByName).

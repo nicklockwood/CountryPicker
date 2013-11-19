@@ -1,7 +1,7 @@
 //
 //  CountryPicker.h
 //
-//  Version 1.1
+//  Version 1.2
 //
 //  Created by Nick Lockwood on 25/04/2011.
 //  Copyright 2011 Charcoal Design
@@ -66,9 +66,13 @@
 + (NSDictionary *)countryCodesByName;
 
 @property (nonatomic, weak_delegate) id<CountryPickerDelegate> delegate;
+
 @property (nonatomic, copy) NSString *selectedCountryName;
 @property (nonatomic, copy) NSString *selectedCountryCode;
+@property (nonatomic, copy) NSLocale *selectedLocale;
 
-- (void)setWithLocale:(NSLocale *)locale;
+- (void)setSelectedCountryCode:(NSString *)countryCode animated:(BOOL)animated;
+- (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated;
+- (void)setSelectedLocale:(NSLocale *)locale animated:(BOOL)animated;
 
 @end
