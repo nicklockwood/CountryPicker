@@ -1270,8 +1270,13 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CountryPickerDemo/CountryPickerDemo-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "CountryPickerDemo/CountryPickerDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1281,8 +1286,13 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CountryPickerDemo/CountryPickerDemo-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "CountryPickerDemo/CountryPickerDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -1,15 +1,14 @@
 //
 //  CountryPicker.h
 //
-//  Version 1.0.1
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 25/04/2011.
 //  Copyright 2011 Charcoal Design
 //
 //  Distributed under the permissive zlib License
-//  Get the latest version from either of these locations:
+//  Get the latest version from here:
 //
-//  http://charcoaldesign.co.uk/source/cocoa#countrypicker
 //  https://github.com/nicklockwood/CountryPicker
 //
 //  This software is provided 'as-is', without any express or implied

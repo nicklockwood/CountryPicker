@@ -1,15 +1,14 @@
 //
 //  CountryPicker.m
 //
-//  Version 1.0.1
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 25/04/2011.
 //  Copyright 2011 Charcoal Design
 //
 //  Distributed under the permissive zlib License
-//  Get the latest version from either of these locations:
+//  Get the latest version from here:
 //
-//  http://charcoaldesign.co.uk/source/cocoa#countrypicker
 //  https://github.com/nicklockwood/CountryPicker
 //
 //  This software is provided 'as-is', without any express or implied
@@ -39,6 +38,12 @@
 #import "CountryPicker.h"
 
 
+#import <Availability.h>
+#if !__has_feature(objc_arc)
+#error This class requires automatic reference counting
+#endif
+
+
 @interface CountryPicker () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @end
@@ -46,6 +51,7 @@
 
 @implementation CountryPicker
 
+//doesn't use _ prefix to avoid name clash
 @synthesize delegate;
 
 + (NSArray *)countryNames
@@ -124,14 +130,14 @@
     self.selectedCountryCode = [locale objectForKey:NSLocaleCountryCode];
 }
 
-- (void)setDataSource:(id<UIPickerViewDataSource>)dataSource
+- (void)setDataSource:(__unused id<UIPickerViewDataSource>)dataSource
 {
     //does nothing
 }
 
 - (void)setSelectedCountryCode:(NSString *)countryCode
 {
-    NSInteger index = [[isa countryCodes] indexOfObject:countryCode];
+    NSInteger index = [[[self class] countryCodes] indexOfObject:countryCode];
     if (index != NSNotFound)
     {
         [self selectRow:index inComponent:0 animated:NO];
@@ -141,12 +147,12 @@
 - (NSString *)selectedCountryCode
 {
     NSInteger index = [self selectedRowInComponent:0];
-    return [isa countryCodes][index];
+    return [[self class] countryCodes][index];
 }
 
 - (void)setSelectedCountryName:(NSString *)countryName
 {
-    NSInteger index = [[isa countryNames] indexOfObject:countryName];
+    NSInteger index = [[[self class] countryNames] indexOfObject:countryName];
     if (index != NSNotFound)
     {
         [self selectRow:index inComponent:0 animated:NO];
@@ -156,23 +162,24 @@
 - (NSString *)selectedCountryName
 {
     NSInteger index = [self selectedRowInComponent:0];
-    return [isa countryNames][index];
+    return [[self class] countryNames][index];
 }
 
 #pragma mark -
-#pragma UIPicker
+#pragma mark UIPicker
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (NSInteger)numberOfComponentsInPickerView:(__unused UIPickerView *)pickerView
 {
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+- (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component
 {
-    return [[isa countryCodes] count];
+    return [[[self class] countryCodes] count];
 }
 
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+- (UIView *)pickerView:(__unused UIPickerView *)pickerView viewForRow:(NSInteger)row
+          forComponent:(__unused NSInteger)component reusingView:(UIView *)view
 {
     if (!view)
     {
@@ -183,26 +190,20 @@
         [view addSubview:label];
         
         UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)];
-        flagView.contentMode = UIViewContentModeScaleToFill;
+        flagView.contentMode = UIViewContentModeScaleAspectFit;
         [view addSubview:flagView];
-        
-#if !__has_feature(objc_arc)
-        
-        [label release];
-        [flagView release];
-        [view autorelease];
-#endif
-        
     }
     
-    [(UILabel *)(view.subviews)[0] setText:[isa countryNames][row]];
-    UIImage *flag = [UIImage imageNamed:[[isa countryCodes][row] stringByAppendingPathExtension:@"png"]];
-    [(UIImageView *)(view.subviews)[1] setImage:flag];
+    [(UILabel *)(view.subviews)[0] setText:[[self class] countryNames][row]];
+    UIImage *flag = [UIImage imageNamed:[[[self class] countryCodes][row] stringByAppendingPathExtension:@"png"]];
+    [(UIImageView *)view.subviews[1] setImage:flag];
     
     return view;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+- (void)pickerView:(__unused UIPickerView *)pickerView
+      didSelectRow:(__unused NSInteger)row
+       inComponent:(__unused NSInteger)component
 {
     [delegate countryPicker:self didSelectCountryWithName:self.selectedCountryName code:self.selectedCountryCode];
 }

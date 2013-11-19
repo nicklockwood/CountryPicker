@@ -1,7 +1,7 @@
 Purpose
 --------------
 
-CountryPicker is a custom UIPickerView subclass that provides an iOS control allowing a user to select a country from a list. It can optionally display a flag next to each country name, and the library includes a set of 249 high-quality, public domain flag images from FAMFAMFAM (http://www.famfamfam.com/lab/icons/flags/) that have been painstakingly re-named by country code to work with the library.
+CountryPicker is a custom UIPickerView subclass that provides an iOS control allowing a user to select a country from a list. It can optionally display a flag next to each country name, and the library includes a set of 249 public domain flag images from https://github.com/koppi/iso-country-flags-svg-collection that have been renamed to work with the library.
 
 Note that the list of countries is based on the ISO 3166 country code standard (http://en.wikipedia.org/wiki/ISO_3166-1). This list excludes certain smaller countries, regarding them as part of a larger state. For example, England, Scotland, Wales and Northern Ireland are lumped together as Great Britain. For most purposes this is fine as it matches the convention used for locales, but if you need to specify additional countries, you can add them to the Countries.plist file (making sure to invent a unique country code for each).
 
@@ -9,7 +9,7 @@ Note that the list of countries is based on the ISO 3166 country code standard (
 Supported iOS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 6.1 (Xcode 4.2, Apple LLVM compiler 4.2)
+* Supported build target - iOS 7.0 (Xcode 5.0, Apple LLVM compiler 5.0)
 * Earliest supported deployment target - iOS 5.0
 * Earliest compatible deployment target - iOS 4.3
 
@@ -19,7 +19,9 @@ NOTE: 'Supported' means that the library has been tested with this version. 'Com
 ARC Compatibility
 ------------------
 
-As of version 1.0.1, CountryPicker automatically works with both ARC and non-ARC projects through conditional compilation. There is no need to exclude CountryPicker files from the ARC validation process, or to convert CountryPicker using the ARC conversion tool.
+As of version 1.1, CountryPicker requires ARC. If you wish to use CountryPicker in a non-ARC project, just add the -fobjc-arc compiler flag to the CountryPicker.m file. To do this, go to the Build Phases tab in your target settings, open the Compile Sources group, double-click CountryPicker.m in the list and type -fobjc-arc into the popover.
+
+If you wish to convert your whole project to ARC, comment out the #error line in CountryPicker.m, then run the Edit > Refactor > Convert to Objective-C ARC... tool in Xcode and make sure all files that you wish to use ARC for (including CountryPicker.m) are checked.
 
 
 Installation

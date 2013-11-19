@@ -10,7 +10,7 @@
 
 @implementation ViewController
 
-- (void)countryPicker:(CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code
+- (void)countryPicker:(__unused CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code
 {
     _nameLabel.text = name;
     _codeLabel.text = code;
