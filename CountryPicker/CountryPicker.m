@@ -82,8 +82,7 @@
         NSMutableDictionary *namesByCode = [NSMutableDictionary dictionary];
         for (NSString *code in [NSLocale ISOCountryCodes])
         {
-            NSString *identifier = [NSLocale localeIdentifierFromComponents:@{NSLocaleCountryCode: code}];
-            NSString *countryName = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:identifier];
+            NSString *countryName = [[NSLocale systemLocale] displayNameForKey:NSLocaleCountryCode value:code];
             if (countryName) namesByCode[code] = countryName;
         }
         _countryNamesByCode = [namesByCode copy];
