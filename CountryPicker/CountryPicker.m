@@ -1,7 +1,7 @@
 //
 //  CountryPicker.m
 //
-//  Version 1.2
+//  Version 1.2.1
 //
 //  Created by Nick Lockwood on 25/04/2011.
 //  Copyright 2011 Charcoal Design
@@ -38,6 +38,9 @@
 #import "CountryPicker.h"
 
 
+#pragma GCC diagnostic ignored "-Wselector"
+
+
 #import <Availability.h>
 #if !__has_feature(objc_arc)
 #error This class requires automatic reference counting
@@ -51,7 +54,7 @@
 
 @implementation CountryPicker
 
-//doesn't use _ prefix to avoid name clash
+//doesn't use _ prefix to avoid name clash with superclass
 @synthesize delegate;
 
 + (NSArray *)countryNames
@@ -106,26 +109,26 @@
     return _countryCodesByName;
 }
 
-- (void)setup
+- (void)setUp
 {
-    [super setDataSource:self];
-    [super setDelegate:self];
+    super.dataSource = self;
+    super.delegate = self;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame]))
     {
-        [self setup];
+        [self setUp];
     }
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if ((self = [super initWithCoder:aDecoder]))
     {
-        [self setup];
+        [self setUp];
     }
     return self;
 }
@@ -137,10 +140,10 @@
 
 - (void)setSelectedCountryCode:(NSString *)countryCode animated:(BOOL)animated
 {
-    NSInteger index = [[[self class] countryCodes] indexOfObject:countryCode];
+    NSUInteger index = [[[self class] countryCodes] indexOfObject:countryCode];
     if (index != NSNotFound)
     {
-        [self selectRow:index inComponent:0 animated:animated];
+        [self selectRow:(NSInteger)index inComponent:0 animated:animated];
     }
 }
 
@@ -151,16 +154,16 @@
 
 - (NSString *)selectedCountryCode
 {
-    NSInteger index = [self selectedRowInComponent:0];
+    NSUInteger index = (NSUInteger)[self selectedRowInComponent:0];
     return [[self class] countryCodes][index];
 }
 
 - (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated
 {
-    NSInteger index = [[[self class] countryNames] indexOfObject:countryName];
+    NSUInteger index = [[[self class] countryNames] indexOfObject:countryName];
     if (index != NSNotFound)
     {
-        [self selectRow:index inComponent:0 animated:animated];
+        [self selectRow:(NSInteger)index inComponent:0 animated:animated];
     }
 }
 
@@ -171,7 +174,7 @@
 
 - (NSString *)selectedCountryName
 {
-    NSInteger index = [self selectedRowInComponent:0];
+    NSUInteger index = (NSUInteger)[self selectedRowInComponent:0];
     return [[self class] countryNames][index];
 }
 
@@ -206,7 +209,7 @@
 
 - (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component
 {
-    return [[[self class] countryCodes] count];
+    return (NSInteger)[[[self class] countryCodes] count];
 }
 
 - (UIView *)pickerView:(__unused UIPickerView *)pickerView viewForRow:(NSInteger)row
@@ -227,8 +230,8 @@
         [view addSubview:flagView];
     }
 
-    ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][row];
-    ((UIImageView *)[view viewWithTag:2]).image = [UIImage imageNamed:[[self class] countryCodes][row]];
+    ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][(NSUInteger)row];
+    ((UIImageView *)[view viewWithTag:2]).image = [UIImage imageNamed:[[self class] countryCodes][(NSUInteger)row]];
     
     return view;
 }
@@ -237,7 +240,8 @@
       didSelectRow:(__unused NSInteger)row
        inComponent:(__unused NSInteger)component
 {
-    [delegate countryPicker:self didSelectCountryWithName:self.selectedCountryName code:self.selectedCountryCode];
+    __strong id<CountryPickerDelegate> strongDelegate = delegate;
+    [strongDelegate countryPicker:self didSelectCountryWithName:self.selectedCountryName code:self.selectedCountryCode];
 }
 
 @end

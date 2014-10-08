@@ -3,14 +3,14 @@ Purpose
 
 CountryPicker is a custom UIPickerView subclass that provides an iOS control allowing a user to select a country from a list. It can optionally display a flag next to each country name, and the library includes a set of 249 public domain flag images from https://github.com/koppi/iso-country-flags-svg-collection that have been renamed to work with the library.
 
-Note that the list of countries is based on the ISO 3166 country code standard (http://en.wikipedia.org/wiki/ISO_3166-1). This list excludes certain smaller countries, regarding them as part of a larger state. For example, England, Scotland, Wales and Northern Ireland are lumped together as Great Britain. For most purposes this is fine as it matches the convention used for locales, but if you need to specify additional countries, you can add them to the Countries.plist file (making sure to invent a unique country code for each).
+Note that the list of countries is based on the ISO 3166 country code standard (http://en.wikipedia.org/wiki/ISO_3166-1). This list excludes certain smaller countries, regarding them as part of a larger state. For example, England, Scotland, Wales and Northern Ireland are lumped together as Great Britain. For most purposes this is fine as it matches the convention used for locales, but if you need to specify additional countries, you can subclass and modify the countires list as described under "Subclassing" below.
 
 
 Supported iOS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 7.0 (Xcode 5.0, Apple LLVM compiler 5.0)
-* Earliest supported deployment target - iOS 5.0
+* Supported build target - iOS 8.0 (Xcode 6.0, Apple LLVM compiler 6.0)
+* Earliest supported deployment target - iOS 6.0
 * Earliest compatible deployment target - iOS 4.3
 
 NOTE: 'Supported' means that the library has been tested with this version. 'Compatible' means that the library should work on this iOS version (i.e. it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
@@ -27,7 +27,7 @@ If you wish to convert your whole project to ARC, comment out the #error line in
 Installation
 --------------
 
-To use the CountryPicker in an app, just drag the CountryPicker class files, and the Countries.plist file into your project. If you want to use the flag icons, drag the Flags folder in also.
+To use the CountryPicker in an app, just drag the CountryPicker class files into your project. If you want to use the flag icons, drag the Flags folder in also.
 
 
 CountryPicker class methods
@@ -104,3 +104,41 @@ As of version 1.0.2 you can easily subclass CountryPicker to modify the country 
 To add additional countries, override the +countryNamesByCode method (there is no need to override +countryCodesByName as this is derived automatically from +countryNamesByCode).
 
 To change the display order, or display duplicate copies of (say) US or UK at the top of the list, override +countryNames method (there is no need to override +countryCodes as this is derived automatically from +countryNames and +countryCodesByName).
+
+
+Release notes
+------------------
+
+Version 1.2.1
+
+- Updated for iOS 8
+- Now compliant with -Weverything warning level
+
+Version 1.2
+
+- Removed Countries.plist - country list is now generated automatically
+- Country names are now localized
+- Added ability to set and get country using locale
+- Removed the setWithLocale: method
+
+Version 1.1
+
+- Updated for iOS 7 compatibility
+- Added new "flat" flag images for iOS 7
+- Now requires ARC (see README for details)
+- Now compliant with -Wall and -Wextra warning levels
+
+Version 1.0.2
+
+- Capitalized Japan
+- Added South Sudan
+- Refactored to make subclassing easier
+
+Version 1.0.1
+
+- Added ARC support
+- Added example project
+
+Version 1.0
+
+- Initial release

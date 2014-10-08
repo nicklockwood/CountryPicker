@@ -10,10 +10,12 @@
 
 @implementation ViewController
 
+@synthesize nameLabel, codeLabel;
+
 - (void)countryPicker:(__unused CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code
 {
-    _nameLabel.text = name;
-    _codeLabel.text = code;
+    self.nameLabel.text = name;
+    self.codeLabel.text = code;
 }
 
 @end
