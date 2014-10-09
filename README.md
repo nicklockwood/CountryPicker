@@ -1,3 +1,5 @@
+![Screenshot](Examples/CountryPicker.png)
+
 Purpose
 --------------
 
