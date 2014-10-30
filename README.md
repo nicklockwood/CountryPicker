@@ -11,7 +11,7 @@ Note that the list of countries is based on the ISO 3166 country code standard (
 Supported iOS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 8.0 (Xcode 6.0, Apple LLVM compiler 6.0)
+* Supported build target - iOS 8.1 (Xcode 6.1, Apple LLVM compiler 6.0)
 * Earliest supported deployment target - iOS 6.0
 * Earliest compatible deployment target - iOS 4.3
 
@@ -110,6 +110,10 @@ To change the display order, or display duplicate copies of (say) US or UK at th
 
 Release notes
 ------------------
+
+Version 1.2.2
+
+- Added workaround for simulator bug where currentLocale doesn't return country names
 
 Version 1.2.1
 

@@ -1,6 +1,6 @@
 {
   "name": "CountryPicker",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "zlib",
   "summary": "CountryPicker is a custom UIPickerView subclass that provides an iOS control allowing a user to select a country from a list.",
   "homepage": "http://github.com/nicklockwood/CountryPicker",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/nicklockwood/CountryPicker.git",
-    "tag": "1.2.1"
+    "tag": "1.2.2"
   },
   "platforms": {
     "ios": "4.3"

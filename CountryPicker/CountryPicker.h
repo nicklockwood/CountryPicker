@@ -1,7 +1,7 @@
 //
 //  CountryPicker.h
 //
-//  Version 1.2.1
+//  Version 1.2.2
 //
 //  Created by Nick Lockwood on 25/04/2011.
 //  Copyright 2011 Charcoal Design
@@ -17,8 +17,8 @@
 //
 //  The source code and data files in this project are the sole creation of
 //  Charcoal Design and are free for use subject to the terms below. The flag
-//  icons are the creation of FAMFAMFAM (http://www.famfamfam.com/lab/icons/flags/)
-//  and are available for free use for any purpose with no requirement for attribution.
+//  icons were sourced from https://github.com/koppi/iso-country-flags-svg-collection
+//  and are available under a Public Domain license
 //
 //  Permission is granted to anyone to use this software for any purpose,
 //  including commercial applications, and to alter it and redistribute it

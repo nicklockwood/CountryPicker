@@ -536,7 +536,6 @@
 		01D39FBA14E60FBC002FC9B1 /* CountryPickerDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CountryPickerDemo-Info.plist"; sourceTree = "<group>"; };
 		01D39FBC14E60FBC002FC9B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01D39FBE14E60FBC002FC9B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		01D39FC014E60FBC002FC9B1 /* CountryPickerDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CountryPickerDemo-Prefix.pch"; sourceTree = "<group>"; };
 		01D39FC114E60FBC002FC9B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		01D39FC214E60FBC002FC9B1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		01D39FC414E60FBC002FC9B1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -871,7 +870,6 @@
 				01D39FBA14E60FBC002FC9B1 /* CountryPickerDemo-Info.plist */,
 				01D39FBB14E60FBC002FC9B1 /* InfoPlist.strings */,
 				01D39FBE14E60FBC002FC9B1 /* main.m */,
-				01D39FC014E60FBC002FC9B1 /* CountryPickerDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1376,7 +1374,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CountryPickerDemo/CountryPickerDemo-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "CountryPickerDemo/CountryPickerDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1392,7 +1389,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CountryPickerDemo/CountryPickerDemo-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "CountryPickerDemo/CountryPickerDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
