@@ -15,5 +15,10 @@
     "ios": "4.3"
   },
   "source_files": "CountryPicker/CountryPicker.{h,m}",
-  "requires_arc": true
+  "requires_arc": true,
+  "resource_bundles": {
+    "CountryPicker": [
+      "Flags/*.png"
+    ]
+  }
 }
