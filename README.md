@@ -29,7 +29,7 @@ If you wish to convert your whole project to ARC, comment out the #error line in
 Installation
 --------------
 
-To use the CountryPicker in an app, just drag the CountryPicker class files into your project. If you want to use the flag icons, drag the Flags folder in also.
+To use the CountryPicker in an app, just drag the CountryPicker class files into your project. If you want to use the flag icons, drag the CountryPicker.bundle folder in also.
 
 
 CountryPicker class methods
@@ -110,6 +110,10 @@ To change the display order, or display duplicate copies of (say) US or UK at th
 
 Release notes
 ------------------
+
+Version 1.2.3
+
+- Moved flag images into a resource bundle
 
 Version 1.2.2
 
