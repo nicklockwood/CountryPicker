@@ -42,6 +42,9 @@
 #pragma GCC diagnostic ignored "-Wgnu"
 
 
+#define LangId @"en_US"  //change Localized country from here for Egypt  set LangId as @"ar_EG"
+
+
 #import <Availability.h>
 #if !__has_feature(objc_arc)
 #error This class requires automatic reference counting
@@ -107,7 +110,7 @@ static NSDictionary *dialCode;
             //workaround for simulator bug
             if (!countryName)
             {
-                countryName = [[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:NSLocaleCountryCode value:code];
+                countryName = [[NSLocale localeWithLocaleIdentifier:LangId] displayNameForKey:NSLocaleCountryCode value:code];
             }
             
             namesByCode[code] = countryName ?: code;
