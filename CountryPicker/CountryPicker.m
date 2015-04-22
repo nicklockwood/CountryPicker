@@ -53,7 +53,9 @@
 @end
 
 
-@implementation CountryPicker
+@implementation CountryPicker{
+}
+static NSDictionary *dialCode;
 
 //doesn't use _ prefix to avoid name clash with superclass
 @synthesize delegate;
@@ -75,9 +77,23 @@
     {
         _countryCodes = [[[self countryCodesByName] objectsForKeys:[self countryNames] notFoundMarker:@""] copy];
     }
+    
     return _countryCodes;
 }
-
++ (NSDictionary *)diallingCodes
+{
+    
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once (&onceToken, ^{
+        // Do some work that happens once
+        NSString * plistPath = [[NSBundle mainBundle] pathForResource:@"DiallingCodes" ofType:@"plist"];
+        dialCode =     [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    });
+    
+    return dialCode;
+}
 + (NSDictionary *)countryNamesByCode
 {
     static NSDictionary *_countryNamesByCode = nil;
@@ -87,13 +103,13 @@
         for (NSString *code in [NSLocale ISOCountryCodes])
         {
             NSString *countryName = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:code];
-
+            
             //workaround for simulator bug
             if (!countryName)
             {
                 countryName = [[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:NSLocaleCountryCode value:code];
             }
- 
+            
             namesByCode[code] = countryName ?: code;
         }
         _countryNamesByCode = [namesByCode copy];
@@ -111,6 +127,7 @@
         for (NSString *code in countryNamesByCode)
         {
             codesByName[countryNamesByCode[code]] = code;
+            
         }
         _countryCodesByName = [codesByName copy];
     }
@@ -136,6 +153,7 @@
 {
     if ((self = [super initWithCoder:aDecoder]))
     {
+        dialCode = [[NSDictionary alloc]init];
         [self setUp];
     }
     return self;
@@ -165,7 +183,11 @@
     NSUInteger index = (NSUInteger)[self selectedRowInComponent:0];
     return [[self class] countryCodes][index];
 }
-
+- (NSString *)selectedDailCountryCode
+{
+    NSUInteger index = (NSUInteger)[self selectedRowInComponent:0];
+    return [[self class] countryCodes][index];
+}
 - (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated
 {
     NSUInteger index = [[[self class] countryNames] indexOfObject:countryName];
@@ -232,17 +254,32 @@
         label.tag = 1;
         [view addSubview:label];
         
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(150, 3, 245, 24)];
+        label2.backgroundColor = [UIColor clearColor];
+        label2.tag = 3;
+        [view addSubview:label2];
+        
+        
         UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)];
         flagView.contentMode = UIViewContentModeScaleAspectFit;
         flagView.tag = 2;
         [view addSubview:flagView];
+        
+        
     }
-
+    
     ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][(NSUInteger)row];
     NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
     ((UIImageView *)[view viewWithTag:2]).image = [UIImage imageNamed:imagePath];
-
-
+    NSString *test =[[self class] countryCodes][(NSUInteger)row];
+    NSString *code = [[[self class] diallingCodes] objectForKey:[test lowercaseString]];
+    ((UILabel *)[view viewWithTag:3]).text = code;
+    
+    
+    
+    
+    
+    
     return view;
 }
 
@@ -251,7 +288,10 @@
        inComponent:(__unused NSInteger)component
 {
     __strong id<CountryPickerDelegate> strongDelegate = delegate;
-    [strongDelegate countryPicker:self didSelectCountryWithName:self.selectedCountryName code:self.selectedCountryCode];
+    NSString *test =[[self class] countryCodes][(NSUInteger)row];
+    NSString *code = [[[self class] diallingCodes] objectForKey:[test lowercaseString]];
+    
+    [strongDelegate countryPicker:self didSelectCountryWithName:self.selectedCountryName code:self.selectedCountryCode dailCode:code];
 }
 
 @end

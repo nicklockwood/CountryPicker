@@ -13,5 +13,5 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *codeLabel;
-
+@property (nonatomic, strong) IBOutlet UILabel *dailCodeLabel;
 @end
