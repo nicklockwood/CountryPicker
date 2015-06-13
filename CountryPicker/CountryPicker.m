@@ -230,6 +230,9 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
         label.backgroundColor = [UIColor clearColor];
         label.tag = 1;
+        if (self.labelFont) {
+            label.font = self.labelFont;
+        }
         [view addSubview:label];
         
         UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)];
