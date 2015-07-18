@@ -58,6 +58,10 @@
 @end
 
 
+#ifdef IB_DESIGNABLE
+IB_DESIGNABLE
+#endif
+
 @interface CountryPicker : UIPickerView
 
 + (NSArray *)countryNames;
