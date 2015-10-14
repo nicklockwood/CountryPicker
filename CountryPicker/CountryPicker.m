@@ -63,7 +63,7 @@
     static NSArray *_countryNames = nil;
     if (!_countryNames)
     {
-        _countryNames = [[[[self countryNamesByCode] allValues] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] copy];
+        _countryNames = [[[[self countryNamesByCode] allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] copy];
     }
     return _countryNames;
 }
