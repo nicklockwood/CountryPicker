@@ -240,7 +240,12 @@
 
     ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][(NSUInteger)row];
     NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
-    ((UIImageView *)[view viewWithTag:2]).image = [UIImage imageNamed:imagePath];
+    UIImage *image;
+    if ([[UIImage class] respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)])
+        image = [UIImage imageNamed:imagePath inBundle:[NSBundle bundleForClass:[CountryPicker class]] compatibleWithTraitCollection:nil];
+    else
+        image = [UIImage imageNamed:imagePath];
+    ((UIImageView *)[view viewWithTag:2]).image = image;
 
 
     return view;
