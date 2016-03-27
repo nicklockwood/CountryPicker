@@ -71,6 +71,8 @@
 @property (nonatomic, copy) NSString *selectedCountryCode;
 @property (nonatomic, copy) NSLocale *selectedLocale;
 
+@property (nonatomic, strong) UIFont *labelFont;
+
 - (void)setSelectedCountryCode:(NSString *)countryCode animated:(BOOL)animated;
 - (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated;
 - (void)setSelectedLocale:(NSLocale *)locale animated:(BOOL)animated;

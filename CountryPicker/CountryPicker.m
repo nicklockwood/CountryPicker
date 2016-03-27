@@ -68,7 +68,7 @@ static NSDictionary *dialCode;
     static NSArray *_countryNames = nil;
     if (!_countryNames)
     {
-        _countryNames = [[[[self countryNamesByCode] allValues] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] copy];
+        _countryNames = [[[[self countryNamesByCode] allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] copy];
     }
     return _countryNames;
 }
@@ -255,6 +255,9 @@ static NSDictionary *dialCode;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
         label.backgroundColor = [UIColor clearColor];
         label.tag = 1;
+        if (self.labelFont) {
+            label.font = self.labelFont;
+        }
         [view addSubview:label];
         
         UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(150, 3, 245, 24)];
@@ -273,6 +276,7 @@ static NSDictionary *dialCode;
     
     ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][(NSUInteger)row];
     NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
+<<<<<<< HEAD
     ((UIImageView *)[view viewWithTag:2]).image = [UIImage imageNamed:imagePath];
     NSString *test =[[self class] countryCodes][(NSUInteger)row];
     NSString *code = [[[self class] diallingCodes] objectForKey:[test lowercaseString]];
@@ -283,6 +287,16 @@ static NSDictionary *dialCode;
     
     
     
+=======
+    UIImage *image;
+    if ([[UIImage class] respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)])
+        image = [UIImage imageNamed:imagePath inBundle:[NSBundle bundleForClass:[CountryPicker class]] compatibleWithTraitCollection:nil];
+    else
+        image = [UIImage imageNamed:imagePath];
+    ((UIImageView *)[view viewWithTag:2]).image = image;
+
+
+>>>>>>> nicklockwood/master
     return view;
 }
 
