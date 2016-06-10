@@ -207,6 +207,18 @@
     return nil;
 }
 
+- (UIImage *)getSelectedFlag:(NSInteger)row
+{
+    NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
+    UIImage *image;
+    if ([[UIImage class] respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)])
+        image = [UIImage imageNamed:imagePath inBundle:[NSBundle bundleForClass:[CountryPicker class]] compatibleWithTraitCollection:nil];
+    else
+        image = [UIImage imageNamed:imagePath];
+    
+    return image;
+}
+
 #pragma mark -
 #pragma mark UIPicker
 
@@ -242,12 +254,7 @@
     }
 
     ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][(NSUInteger)row];
-    NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
-    UIImage *image;
-    if ([[UIImage class] respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)])
-        image = [UIImage imageNamed:imagePath inBundle:[NSBundle bundleForClass:[CountryPicker class]] compatibleWithTraitCollection:nil];
-    else
-        image = [UIImage imageNamed:imagePath];
+    UIImage *image = [self getSelectedFlag:row];
     ((UIImageView *)[view viewWithTag:2]).image = image;
 
 
@@ -258,8 +265,11 @@
       didSelectRow:(__unused NSInteger)row
        inComponent:(__unused NSInteger)component
 {
+    
+    UIImage *image = [self getSelectedFlag:row];
+    
     __strong id<CountryPickerDelegate> strongDelegate = delegate;
-    [strongDelegate countryPicker:self didSelectCountryWithName:self.selectedCountryName code:self.selectedCountryCode];
+    [strongDelegate countryPicker:self didSelectCountryWithName:self.selectedCountryName code:self.selectedCountryCode flag:image];
 }
 
 @end

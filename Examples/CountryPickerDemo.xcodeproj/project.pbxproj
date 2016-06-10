@@ -352,6 +352,7 @@
 		01D39FCD14E60FBC002FC9B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "CountryPickerDemo/CountryPickerDemo-Info.plist";
@@ -367,6 +368,7 @@
 		01D39FCE14E60FBC002FC9B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "CountryPickerDemo/CountryPickerDemo-Info.plist";

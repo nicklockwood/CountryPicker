@@ -12,10 +12,11 @@
 
 @synthesize nameLabel, codeLabel;
 
-- (void)countryPicker:(__unused CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code
+- (void)countryPicker:(__unused CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code flag:(UIImage *)flag
 {
     self.nameLabel.text = name;
     self.codeLabel.text = code;
+    self.flagView.image = flag;
 }
 
 @end
