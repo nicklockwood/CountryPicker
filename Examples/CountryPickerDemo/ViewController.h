@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *codeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *flagView;
 
 @end

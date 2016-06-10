@@ -53,7 +53,7 @@
 
 @protocol CountryPickerDelegate <UIPickerViewDelegate>
 
-- (void)countryPicker:(CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code;
+- (void)countryPicker:(CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code flag:(UIImage *)flag;
 
 @end
 
@@ -76,5 +76,5 @@
 - (void)setSelectedCountryCode:(NSString *)countryCode animated:(BOOL)animated;
 - (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated;
 - (void)setSelectedLocale:(NSLocale *)locale animated:(BOOL)animated;
-
+- (UIImage *)getSelectedFlag:(NSInteger)row;
 @end
