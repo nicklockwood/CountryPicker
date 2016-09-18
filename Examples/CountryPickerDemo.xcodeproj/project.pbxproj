@@ -18,6 +18,7 @@
 		01D39FC614E60FBC002FC9B1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D39FC514E60FBC002FC9B1 /* ViewController.m */; };
 		01D39FC914E60FBC002FC9B1 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D39FC714E60FBC002FC9B1 /* ViewController.xib */; };
 		01D39FD814E60FE1002FC9B1 /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D39FD614E60FE1002FC9B1 /* CountryPicker.m */; };
+		3DB456CD1AE7B24B005D85CB /* DiallingCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DB456CC1AE7B24B005D85CB /* DiallingCodes.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		01D39FC814E60FBC002FC9B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		01D39FD514E60FE1002FC9B1 /* CountryPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryPicker.h; sourceTree = "<group>"; };
 		01D39FD614E60FE1002FC9B1 /* CountryPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryPicker.m; sourceTree = "<group>"; };
+		3DB456CC1AE7B24B005D85CB /* DiallingCodes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DiallingCodes.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		01D39FD314E60FE1002FC9B1 /* CountryPicker */ = {
 			isa = PBXGroup;
 			children = (
+				3DB456CC1AE7B24B005D85CB /* DiallingCodes.plist */,
 				01D39FD514E60FE1002FC9B1 /* CountryPicker.h */,
 				01D39FD614E60FE1002FC9B1 /* CountryPicker.m */,
 				0182A9061A30B32700E9A7CF /* CountryPicker.bundle */,
@@ -169,6 +172,7 @@
 				01D39FBD14E60FBC002FC9B1 /* InfoPlist.strings in Resources */,
 				01D39FC914E60FBC002FC9B1 /* ViewController.xib in Resources */,
 				0182A9071A30B32700E9A7CF /* CountryPicker.bundle in Resources */,
+				3DB456CD1AE7B24B005D85CB /* DiallingCodes.plist in Resources */,
 				01695AE6174E229D00B53DBA /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,7 +278,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -340,7 +344,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -355,6 +359,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "CountryPickerDemo/CountryPickerDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wall",
@@ -370,6 +375,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "CountryPickerDemo/CountryPickerDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wall",
