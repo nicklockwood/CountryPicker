@@ -1,10 +1,10 @@
 //
 //  CountryPicker.m
 //
-//  Version 1.2.3
+//  Version 1.3
 //
 //  Created by Nick Lockwood on 25/04/2011.
-//  Copyright 2011 Charcoal Design
+//  Copyright © 2011 Nick Lockwood. All rights reserved.
 //
 //  Distributed under the permissive zlib License
 //  Get the latest version from here:
@@ -37,9 +37,8 @@
 
 #import "CountryPicker.h"
 
-
-#pragma GCC diagnostic ignored "-Wselector"
-#pragma GCC diagnostic ignored "-Wgnu"
+#pragma clang diagnostic ignored "-Wselector"
+#pragma clang diagnostic ignored "-Wgnu"
 
 
 #import <Availability.h>
@@ -55,15 +54,15 @@
 
 @implementation CountryPicker
 
-//doesn't use _ prefix to avoid name clash with superclass
-@synthesize delegate;
+// delegate doesn't use _ prefix to avoid name clash with superclass
+@synthesize delegate, labelFont = _labelFont;
 
 + (NSArray *)countryNames
 {
     static NSArray *_countryNames = nil;
     if (!_countryNames)
     {
-        _countryNames = [[[[self countryNamesByCode] allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] copy];
+        _countryNames = [[[self countryNamesByCode].allValues sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] copy];
     }
     return _countryNames;
 }
@@ -207,6 +206,12 @@
     return nil;
 }
 
+- (void)setLabelFont:(UIFont *)labelFont
+{
+    _labelFont = labelFont;
+    [self reloadComponent:0];
+}
+
 #pragma mark -
 #pragma mark UIPicker
 
@@ -217,7 +222,7 @@
 
 - (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component
 {
-    return (NSInteger)[[[self class] countryCodes] count];
+    return (NSInteger)[[self class] countryCodes].count;
 }
 
 - (UIView *)pickerView:(__unused UIPickerView *)pickerView viewForRow:(NSInteger)row
@@ -230,7 +235,8 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
         label.backgroundColor = [UIColor clearColor];
         label.tag = 1;
-        if (self.labelFont) {
+        if (self.labelFont)
+        {
             label.font = self.labelFont;
         }
         [view addSubview:label];
@@ -245,12 +251,14 @@
     NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
     UIImage *image;
     if ([[UIImage class] respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)])
+    {
         image = [UIImage imageNamed:imagePath inBundle:[NSBundle bundleForClass:[CountryPicker class]] compatibleWithTraitCollection:nil];
+    }
     else
+    {
         image = [UIImage imageNamed:imagePath];
+    }
     ((UIImageView *)[view viewWithTag:2]).image = image;
-
-
     return view;
 }
 

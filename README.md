@@ -1,3 +1,8 @@
+[![License](https://img.shields.io/badge/license-zlib-lightgrey.svg?maxAge=2592000)](https://opensource.org/licenses/Zlib)
+[![CocoaPods](https://img.shields.io/cocoapods/p/CountryPicker.svg?maxAge=2592000)](https://cocoapods.org/pods/CountryPicker)
+[![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/CountryPicker.svg?maxAge=2592000)](http://cocoadocs.org/docsets/CountryPicker/)
+[![Twitter](https://img.shields.io/badge/twitter-@nicklockwood-blue.svg?maxAge=2592000)](http://twitter.com/nicklockwood)
+
 ![Screenshot](Examples/CountryPicker.png)
 
 Purpose
@@ -11,9 +16,9 @@ Note that the list of countries is based on the ISO 3166 country code standard (
 Supported iOS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 8.1 (Xcode 6.1, Apple LLVM compiler 6.0)
+* Supported build target - iOS 10.0 (Xcode 8.0, Apple LLVM compiler 8.0)
 * Earliest supported deployment target - iOS 6.0
-* Earliest compatible deployment target - iOS 4.3
+* Earliest compatible deployment target - iOS 5.0
 
 NOTE: 'Supported' means that the library has been tested with this version. 'Compatible' means that the library should work on this iOS version (i.e. it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
 
@@ -31,71 +36,7 @@ Installation
 
 To use the CountryPicker in an app, just drag the CountryPicker class files into your project. If you want to use the flag icons, drag the CountryPicker.bundle folder in also.
 
-
-CountryPicker class methods
------------------------------
-
-The CountryPicker class includes several handy methods for retrieving country names and codes, and converting between the two:
-
-	+ (NSArray *)countryNames;
-	
-Returns an array of all country names in alphabetical order.
-	
-	+ (NSArray *)countryCodes;
-	
-Returns an array of all country codes. The codes are sorted by country name, and their indices match the indices of their respective country name in the `countryNames` list, but note that this means that the codes themselves are not sorted alphabetically.
-	
-	+ (NSDictionary *)countryNamesByCode;
-	
-Returns a dictionary of country names, keyed by country code.
-	
-	+ (NSDictionary *)countryCodesByName;
-
-Returns a dictionary of country codes, keyed by country name.
-
-
-CountryPicker properties
----------------------------
-
-Each CountryPicker view has the following properties:
-
-	@property (nonatomic, assign) id<CountryPickerDelegate> delegate;
-	
-The delegate. This implements the CountryPickerDelegate protocol, and is notified when a country is selected.
-	
-	@property (nonatomic, copy) NSString *selectedCountryName;
-	
-The currently selected country name. This is a read-write property, so it can be used to set the picker value. Setting the picker to a country name that does not appear in the `countryNames` array has no effect.
-	
-	@property (nonatomic, copy) NSString *selectedCountryCode;
-	
-The currently selected country code. This is a read-write property, so it can be used to set the picker value. Setting the picker to a country code that does not appear in the `countryCodes` array has no effect.
-	
-    @property (nonatomic, copy) NSLocale *selectedLocale;
-	
-This is a convenience property to set/get the selected country using a locale. The picker will automatically select the correct country based on the local. To default the picker to the current device locale, you can say:
-
-	picker.selectedLocale = [NSLocale currentLocale];
-
-
-CountryPicker instance methods
-----------------------------------
-
-    - (void)setSelectedCountryCode:(NSString *)countryCode animated:(BOOL)animated;
-    - (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated;
-    - (void)setSelectedLocale:(NSLocale *)locale animated:(BOOL)animated;
-    
-These methods allow you to set the current country via name, code or locale. THey work excatly like the equivalent property setters, but have an optional animated parameter to make the picker scroll smoothly to the selected country.
-
-
-CountryPickerDelegate protocol
---------------------------------
-
-The CountryPickerDelegate protocol has a single obligatory method:
-
-	- (void)countryPicker:(CountryPicker *)picker didSelectCountryWithName:(NSString *)name code:(NSString *)code;
-
-This method is called whenever a country is selected in the picker.
+Alternatively, you can install CountryPicker using Cocoapods or Carthage,
 
 
 Subclassing
@@ -110,6 +51,14 @@ To change the display order, or display duplicate copies of (say) US or UK at th
 
 Release notes
 ------------------
+
+Version 1.3
+
+- Updated project for Xcode 8
+- You can now override the font used by the picker labels
+- Country sorting is now correct for localized names
+- Flag images are now loaded from the correct bundle
+- Added Carthage support
 
 Version 1.2.3
 
