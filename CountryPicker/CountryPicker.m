@@ -247,7 +247,9 @@
         [view addSubview:flagView];
     }
 
-    ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][(NSUInteger)row];
+    NSString *countryName = [[self class] countryNames][(NSUInteger)row];
+    ((UILabel *)[view viewWithTag:1]).text = countryName;
+    view.accessibilityLabel = countryName;
     NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
     UIImage *image;
     if ([[UIImage class] respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)])
